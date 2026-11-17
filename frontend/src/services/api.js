@@ -38,3 +38,36 @@ export function logoutUser() {
   localStorage.removeItem("marketplace_token");
   localStorage.removeItem("marketplace_user");
 }
+
+export function getStoredUser() {
+  try {
+    const user = localStorage.getItem("marketplace_user");
+    return user ? JSON.parse(user) : null;
+  } catch {
+    return null;
+  }
+}
+
+export function getToken() {
+  return localStorage.getItem("marketplace_token");
+}
+
+export async function registerUser(userData) {
+  const data = await apiRequest("/register", {
+    method: "POST",
+    body: JSON.stringify(userData),
+  });
+
+  localStorage.setItem("marketplace_token", data.token);
+  localStorage.setItem("marketplace_user", JSON.stringify(data.user));
+
+  return data.user;
+}
+
+export async function getCurrentUser() {
+  const data = await apiRequest("/me");
+
+  localStorage.setItem("marketplace_user", JSON.stringify(data.user));
+
+  return data.user;
+}

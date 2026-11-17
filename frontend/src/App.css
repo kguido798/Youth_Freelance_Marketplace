@@ -2140,3 +2140,59 @@
     padding: 12px 10px;
   }
 }
+
+.project-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.project-actions .icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  min-height: 36px;
+  border: 1px solid #333;
+  border-radius: 8px;
+  background: #171717;
+  color: #d4d4d4;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.project-actions .icon-button:hover {
+  border-color: #b5f542;
+  color: #b5f542;
+}
+
+.project-actions .danger-button:hover {
+  border-color: #ff5c5c;
+  color: #ff5c5c;
+}
+
+.applications-panel {
+  margin-top: 24px;
+}
+
+.applications-panel .panel-heading h2 {
+  margin-top: 5px;
+}
+
+.project-form-panel .panel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media (max-width: 700px) {
+  .client-project-row {
+    flex-wrap: wrap;
+  }
+
+  .project-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}

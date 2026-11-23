@@ -76,7 +76,7 @@ def get_current_user():
         connection.close()
 
     # Read the role from the database, not from client input.
-    if user is None:
+    if user is None or not user["is_active"]:
         return None
 
     return user
@@ -212,7 +212,7 @@ def login():
     finally:
         connection.close()
 
-    if user is None or not check_password_hash(
+    if user is None or not user["is_active"] or not check_password_hash(
         user["password_hash"], password
     ):
         return jsonify({

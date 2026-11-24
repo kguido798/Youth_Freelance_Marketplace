@@ -24,7 +24,6 @@ CORS(app, resources={
         ]
     }
 })
-]}})
 app.register_blueprint(auth_bp)
 
 

@@ -15,8 +15,15 @@ from database import initialize_database, get_db_connection
 from auth import auth_bp, require_auth
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": [
-    "http://localhost:5173", "http://127.0.0.1:5173"
+CORS(app, resources={
+    r"/api/*": {
+        "origins": [
+            "http://localhost:5173",
+            "http://127.0.0.1:5173",
+            "https://youth-freelance-marketplace.vercel.app"
+        ]
+    }
+})
 ]}})
 app.register_blueprint(auth_bp)
 

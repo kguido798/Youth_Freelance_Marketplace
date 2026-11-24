@@ -124,7 +124,7 @@ export default function PublicClientProfile() {
         </div>
 
         <div className="public-client-footer">
-          <p>Discover opportunities posted by this client on SkillBridge.</p>
+          <p>Discover opportunities posted by this client on Youth Freelance Marketplace.</p>
           <Link to="/projects">Browse Projects</Link>
         </div>
       </section>

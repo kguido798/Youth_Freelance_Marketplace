@@ -1,62 +1,104 @@
 
-.client-directory-page {
+.discover-page {
   min-height: 100vh;
-  padding: 45px 7%;
-  background: #090b0a;
-  color: #f5f5f5;
+  background: #090c0a;
+  color: #f5f7f3;
 }
 
-.directory-header {
+.discover-navbar {
+  height: 76px;
+  padding: 0 7%;
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: flex-end;
-  gap: 25px;
-  margin-bottom: 35px;
+  border-bottom: 1px solid #202820;
 }
 
-.directory-eyebrow {
+.discover-brand {
+  color: white;
+  font-size: 25px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.discover-brand span {
+  color: #b7f34a;
+}
+
+.discover-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.discover-nav-links a {
+  color: #a5ada4;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.discover-nav-links a:hover,
+.discover-nav-links a.active {
+  color: #b7f34a;
+}
+
+.discover-hero {
+  padding: 85px 7%;
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    #203019 0%,
+    #101710 45%,
+    #090c0a 85%
+  );
+}
+
+.discover-hero-content {
+  max-width: 850px;
+  margin: auto;
+  text-align: center;
+}
+
+.discover-tag {
   color: #b7f34a;
   font-size: 12px;
-  font-weight: 700;
   letter-spacing: 2px;
+  font-weight: 700;
 }
 
-.directory-header h1 {
-  margin: 12px 0;
-  font-size: 36px;
+.discover-hero h1 {
+  margin: 20px 0;
+  font-size: clamp(38px, 5vw, 58px);
+  font-weight: 800;
 }
 
-.directory-header p {
-  color: #a5aaa4;
-  line-height: 1.6;
-}
-
-.directory-back-link,
-.view-client-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
+.discover-hero h1 span {
   color: #b7f34a;
-  text-decoration: none;
-  font-weight: 600;
 }
 
-.client-search-form {
+.discover-hero p {
+  max-width: 650px;
+  margin: 0 auto;
+  color: #aab3a8;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.discover-search {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 10px 14px;
-  margin-bottom: 40px;
-  background: #141815;
-  border: 1px solid #293128;
+  gap: 13px;
+  margin-top: 35px;
+  padding: 10px 12px 10px 18px;
+  background: #171e18;
+  border: 1px solid #394635;
   border-radius: 12px;
   color: #b7f34a;
 }
 
-.client-search-form input {
+.discover-search input {
   flex: 1;
   min-width: 0;
-  padding: 10px 0;
+  padding: 12px 0;
   background: transparent;
   border: none;
   outline: none;
@@ -64,148 +106,217 @@
   font-size: 14px;
 }
 
-.client-search-form button {
-  padding: 11px 22px;
-  background: #b7f34a;
-  color: #10130c;
+.discover-search button,
+.discover-state button {
+  padding: 12px 23px;
   border: none;
   border-radius: 8px;
+  background: #b7f34a;
+  color: #10140c;
   font-weight: 700;
   cursor: pointer;
 }
 
-.directory-results-heading {
+.discover-content {
+  max-width: 1250px;
+  margin: auto;
+  padding: 55px 30px 90px;
+}
+
+.discover-heading {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 22px;
+  margin-bottom: 28px;
 }
 
-.directory-results-heading h2 {
-  font-size: 21px;
+.discover-heading h2 {
+  margin: 0 0 8px;
+  font-size: 25px;
 }
 
-.directory-results-heading span {
-  color: #a5aaa4;
+.discover-heading p {
+  color: #929b91;
+  font-size: 14px;
+}
+
+.discover-count {
+  padding: 9px 15px;
+  background: #182116;
+  color: #b7f34a;
+  border-radius: 25px;
   font-size: 13px;
 }
 
-.client-directory-grid {
+.discover-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
 }
 
-.client-directory-card {
+.discover-card {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  min-height: 270px;
-  padding: 24px;
-  background: #141815;
-  border: 1px solid #293128;
+  min-height: 310px;
+  padding: 25px;
+  background: #141a15;
+  border: 1px solid #29342a;
   border-radius: 14px;
+  transition: transform 0.2s, border-color 0.2s;
 }
 
-.client-card-icon {
+.discover-card:hover {
+  transform: translateY(-4px);
+  border-color: #8cbf3d;
+}
+
+.discover-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 23px;
+}
+
+.discover-company-icon {
   display: grid;
   place-items: center;
-  width: 48px;
-  height: 48px;
-  margin-bottom: 18px;
-  background: #25321a;
+  width: 53px;
+  height: 53px;
   border-radius: 12px;
+  background: #26351e;
   color: #b7f34a;
 }
 
-.client-directory-card h3 {
-  margin: 0 0 8px;
+.public-label {
+  padding: 6px 10px;
+  color: #b7f34a;
+  background: #202d19;
+  border-radius: 20px;
+  font-size: 11px;
+}
+
+.discover-card h3 {
+  margin: 0 0 7px;
   font-size: 19px;
 }
 
-.client-card-owner {
-  margin: 0 0 14px;
-  color: #a5aaa4;
-  font-size: 13px;
-}
-
-.client-industry {
-  padding: 6px 10px;
-  background: #26331c;
-  color: #c5f77a;
-  border-radius: 20px;
+.discover-owner {
+  margin: 0 0 18px;
+  color: #8e988e;
   font-size: 12px;
 }
 
-.client-location {
+.discover-detail {
   display: flex;
   align-items: center;
-  gap: 7px;
-  color: #a5aaa4;
+  gap: 9px;
+  margin: 6px 0;
+  color: #b7f34a;
   font-size: 13px;
 }
 
-.client-card-description {
-  color: #c0c5bf;
-  font-size: 14px;
-  line-height: 1.6;
+.discover-detail span {
+  color: #bdc5bc;
 }
 
-.view-client-link {
+.discover-description {
+  margin: 17px 0;
+  color: #a5ada4;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.discover-view-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-top: auto;
   padding-top: 18px;
+  border-top: 1px solid #29342a;
+  color: #b7f34a;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
 }
 
-.directory-message,
-.directory-error {
-  padding: 20px;
-  color: #a5aaa4;
-}
-
-.directory-error {
-  color: #ff8585;
-}
-
-.directory-empty {
-  padding: 55px 20px;
+.discover-state {
+  padding: 60px 20px;
   text-align: center;
-  background: #141815;
-  border: 1px solid #293128;
+  color: #a5ada4;
+  background: #141a15;
+  border: 1px solid #29342a;
   border-radius: 14px;
-  color: #a5aaa4;
 }
 
-.directory-empty svg {
+.discover-state svg {
   color: #b7f34a;
 }
 
-.directory-empty h3 {
+.discover-state h3 {
   color: white;
 }
 
-@media (max-width: 650px) {
-  .client-directory-page {
-    padding: 30px 5%;
-  }
+.discover-state button {
+  margin-top: 15px;
+}
 
-  .directory-header {
+.discover-error {
+  color: #ff9292;
+}
+
+.loading-icon {
+  animation: discover-spin 1s linear infinite;
+}
+
+@keyframes discover-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 900px) {
+  .discover-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 650px) {
+  .discover-navbar {
+    height: auto;
+    padding: 20px 5%;
     align-items: flex-start;
     flex-direction: column;
+    gap: 18px;
   }
 
-  .directory-header h1 {
-    font-size: 29px;
+  .discover-nav-links {
+    flex-wrap: wrap;
+    gap: 15px;
   }
 
-  .client-search-form {
+  .discover-hero {
+    padding: 60px 5%;
+  }
+
+  .discover-search {
     flex-wrap: wrap;
   }
 
-  .client-search-form input {
-    flex-basis: 70%;
+  .discover-search button {
+    width: 100%;
   }
 
-  .client-search-form button {
-    width: 100%;
+  .discover-content {
+    padding: 40px 5%;
+  }
+
+  .discover-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .discover-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
   }
 }

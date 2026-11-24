@@ -1,134 +1,180 @@
 
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Search, Building2, MapPin, ArrowRight } from "lucide-react";
+import {
+  Search,
+  Building2,
+  MapPin,
+  ArrowUpRight,
+  BriefcaseBusiness,
+  RefreshCw,
+} from "lucide-react";
 import { apiRequest } from "../services/api";
 import "./ClientDirectory.css";
 
 export default function ClientDirectory() {
   const [clients, setClients] = useState([]);
-  const [query, setQuery] = useState("");
+  const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  async function loadClients(searchTerm = "") {
+  async function fetchClients(searchTerm = "") {
     try {
       setLoading(true);
       setError("");
 
-      const endpoint = `/clients?q=${encodeURIComponent(searchTerm)}`;
-      const data = await apiRequest(endpoint);
+      const result = await apiRequest(
+        `/clients?q=${encodeURIComponent(searchTerm)}`
+      );
 
-      setClients(data.clients || []);
+      setClients(result.clients || []);
     } catch (err) {
-      setError(err.message || "Unable to load clients.");
+      setError(err.message || "Could not load clients.");
     } finally {
       setLoading(false);
     }
   }
 
   useEffect(() => {
-    loadClients();
+    fetchClients();
   }, []);
 
-  function handleSearch(event) {
-    event.preventDefault();
-    loadClients(query.trim());
+  function handleSearch(e) {
+    e.preventDefault();
+    fetchClients(search.trim());
+  }
+
+  function clearSearch() {
+    setSearch("");
+    fetchClients("");
   }
 
   return (
-    <div className="client-directory-page">
-      <header className="directory-header">
-        <div>
-          <span className="directory-eyebrow">SKILLBRIDGE NETWORK</span>
-          <h1>Discover Clients</h1>
-          <p>
-            Explore organizations and clients looking to work with talented
-            freelancers.
-          </p>
-        </div>
-
-        <Link to="/projects" className="directory-back-link">
-          Browse Projects <ArrowRight size={17} />
+    <main className="discover-page">
+      <nav className="discover-navbar">
+        <Link to="/" className="discover-brand">
+          Skill<span>Bridge</span>
         </Link>
-      </header>
 
-      <form className="client-search-form" onSubmit={handleSearch}>
-        <Search size={20} />
-        <input
-          type="search"
-          value={query}
-          onChange={(event) => setQuery(event.target.value)}
-          placeholder="Search by company, name, industry, or location..."
-        />
-        <button type="submit">Search</button>
-      </form>
+        <div className="discover-nav-links">
+          <Link to="/projects">Browse Projects</Link>
+          <Link to="/clients" className="active">Discover Clients</Link>
+          <Link to="/profile">My Profile</Link>
+        </div>
+      </nav>
 
-      <div className="directory-results-heading">
-        <h2>Public Client Profiles</h2>
-        <span>{clients.length} found</span>
-      </div>
-
-      {loading && <p className="directory-message">Loading clients...</p>}
-
-      {!loading && error && (
-        <p className="directory-error">{error}</p>
-      )}
-
-      {!loading && !error && clients.length === 0 && (
-        <div className="directory-empty">
-          <Building2 size={35} />
-          <h3>No clients found</h3>
+      <section className="discover-hero">
+        <div className="discover-hero-content">
+          <span className="discover-tag">BUILD MEANINGFUL CONNECTIONS</span>
+          <h1>
+            Discover <span>Clients</span>
+          </h1>
           <p>
-            Try another search term. Only clients with public profiles appear
-            here.
+            Explore companies, connect with organizations, and discover
+            opportunities to showcase your skills and grow professionally.
           </p>
+
+          <form className="discover-search" onSubmit={handleSearch}>
+            <Search size={21} />
+            <input
+              type="search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search companies, industries or locations..."
+            />
+            <button type="submit">Search</button>
+          </form>
         </div>
-      )}
+      </section>
 
-      {!loading && !error && clients.length > 0 && (
-        <div className="client-directory-grid">
-          {clients.map((client) => (
-            <article className="client-directory-card" key={client.user_id}>
-              <div className="client-card-icon">
-                <Building2 size={25} />
-              </div>
+      <section className="discover-content">
+        <div className="discover-heading">
+          <div>
+            <h2>Explore Organizations</h2>
+            <p>Discover clients with public profiles on SkillBridge.</p>
+          </div>
 
-              <h3>{client.company_name || client.name}</h3>
+          <span className="discover-count">
+            {clients.length} {clients.length === 1 ? "Client" : "Clients"}
+          </span>
+        </div>
 
-              <p className="client-card-owner">
-                Profile managed by {client.name}
-              </p>
+        {loading && (
+          <div className="discover-state">
+            <RefreshCw className="loading-icon" size={25} />
+            <p>Finding clients...</p>
+          </div>
+        )}
 
-              {client.industry && (
-                <span className="client-industry">
-                  {client.industry}
-                </span>
-              )}
+        {!loading && error && (
+          <div className="discover-state discover-error">
+            <p>{error}</p>
+            <button onClick={() => fetchClients(search)}>Try Again</button>
+          </div>
+        )}
 
-              {client.location && (
-                <p className="client-location">
-                  <MapPin size={15} />
-                  {client.location}
-                </p>
-              )}
+        {!loading && !error && clients.length === 0 && (
+          <div className="discover-state">
+            <Building2 size={42} />
+            <h3>No clients found</h3>
+            <p>Try a different search or check back later.</p>
+            {search && (
+              <button onClick={clearSearch}>Clear Search</button>
+            )}
+          </div>
+        )}
 
-              {client.description && (
-                <p className="client-card-description">
-                  {client.description}
-                </p>
-              )}
-
-              <Link
-                to={`/clients/${client.user_id}`}
-                className="view-client-link"
+        {!loading && !error && clients.length > 0 && (
+          <div className="discover-grid">
+            {clients.map((client) => (
+              <article
+                className="discover-card"
+                key={client.user_id}
               >
-                View Profile <ArrowRight size={16} />
-              </Link>
-            </article>
-          ))}
-        </div>
-      )}
-    </div>
+                <div className="discover-card-top">
+                  <div className="discover-company-icon">
+                    <Building2 size={27} />
+                  </div>
+                  <span className="public-label">Public Profile</span>
+                </div>
+
+                <h3>{client.company_name || client.name}</h3>
+
+                <p className="discover-owner">
+                  Managed by {client.name}
+                </p>
+
+                {client.industry && (
+                  <div className="discover-detail">
+                    <BriefcaseBusiness size={16} />
+                    <span>{client.industry}</span>
+                  </div>
+                )}
+
+                {client.location && (
+                  <div className="discover-detail">
+                    <MapPin size={16} />
+                    <span>{client.location}</span>
+                  </div>
+                )}
+
+                <p className="discover-description">
+                  {client.description ||
+                    "This organization has not added a description yet."}
+                </p>
+
+                <Link
+                  to={`/clients/${client.user_id}`}
+                  className="discover-view-link"
+                >
+                  View Client Profile
+                  <ArrowUpRight size={18} />
+                </Link>
+              </article>
+            ))}
+          </div>
+        )}
+      </section>
+    </main>
   );
 }

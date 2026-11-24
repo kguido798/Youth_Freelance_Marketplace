@@ -8,10 +8,13 @@ import {
   Mail,
   UserRound,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { registerUser } from "../services/api";
 import AuthLayout from "../components/AuthLayout";
 
 export default function Register() {
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -35,32 +38,45 @@ export default function Register() {
     setMessage("");
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
+    setMessage("");
 
     if (formData.fullName.trim().length < 2) {
       setMessage("Please enter your full name.");
       setMessageType("error");
       return;
     }
-
     if (formData.password.length < 8) {
       setMessage("Your password must contain at least 8 characters.");
       setMessageType("error");
       return;
     }
-
     if (formData.password !== formData.confirmPassword) {
       setMessage("Your passwords do not match.");
       setMessageType("error");
       return;
     }
 
-    // Frontend demonstration only. Connect to Flask registration later.
-    setMessage(
-      `Your form is valid! Backend account creation for ${formData.role} accounts will be added next.`
-    );
-    setMessageType("success");
+    setLoading(true);
+    try {
+      const user = await registerUser({
+        name: formData.fullName.trim(),
+        email: formData.email.trim(),
+        password: formData.password,
+        role: formData.role,
+      });
+      const destinations = {
+        freelancer: "/profile",
+        client: "/client-dashboard",
+      };
+      navigate(destinations[user.role] || "/login", { replace: true });
+    } catch (error) {
+      setMessage(error.message || "Could not create your account.");
+      setMessageType("error");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -199,8 +215,8 @@ export default function Register() {
           </div>
         )}
 
-        <button type="submit" className="submit-button">
-          Create account <span>→</span>
+        <button type="submit" className="submit-button" disabled={loading}>
+          {loading ? "Creating account..." : <>Create account <span>→</span></>}
         </button>
 
         <p className="auth-switch">

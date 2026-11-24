@@ -72,7 +72,7 @@ export default function AdminDashboard() {
   return (
     <div className="dashboard-page admin-page">
       <header className="dashboard-navbar">
-        <Link to="/" className="brand"><span className="brand-icon"><ShieldCheck size={21}/></span>Skill<span className="accent">Bridge</span><span className="admin-label">ADMIN</span></Link>
+        <Link to="/" className="brand"><span className="brand-icon"><ShieldCheck size={21}/></span>Youth<span className="accent">FreelanceMarketplace</span><span className="admin-label">ADMIN</span></Link>
         <nav className="dashboard-nav-links">
           <Link to="/admin" className="active">Overview</Link>
           <Link to="/projects">Projects</Link>

@@ -150,7 +150,7 @@ export default function ClientDashboard() {
       <header className="dashboard-navbar">
         <Link to="/" className="brand">
           <span className="brand-icon"><BriefcaseBusiness size={21} /></span>
-          Skill<span className="accent">Bridge</span>
+          Youth<span className="accent">FreelanceMarketplace</span>
         </Link>
         <nav className="dashboard-nav-links">
           <Link to="/projects">Browse Projects</Link>

@@ -90,7 +90,7 @@ export default function FreelancerProfile() {
   return (
     <div className="dashboard-page">
       <header className="dashboard-navbar">
-        <Link to="/" className="brand"><span className="brand-icon"><Code2 size={21}/></span>Skill<span className="accent">Bridge</span></Link>
+        <Link to="/" className="brand"><span className="brand-icon"><Code2 size={21}/></span>Youth<span className="accent">FreelanceMarketplace</span></Link>
         <nav className="dashboard-nav-links">
           <Link to="/projects">Browse Projects</Link>
           <Link to="/clients">Discover Clients</Link>
@@ -123,7 +123,7 @@ export default function FreelancerProfile() {
             ) : (
               <><p className="profile-role">{profile.title || "Add a professional title"}</p><p className="muted-text">{profile.location || "Add your location"}</p></>
             )}
-            <span className="profile-completion-label">SkillBridge Freelancer</span>
+            <span className="profile-completion-label">Youth Freelance Marketplace Freelancer</span>
           </aside>
 
           <div className="profile-main">

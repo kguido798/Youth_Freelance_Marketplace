@@ -13,7 +13,7 @@ export default function AuthLayout({ children, mode }) {
             <Code2 size={22} />
           </span>
           <span>
-            Skill<span className="accent">Bridge</span>
+            Youth<span className="accent">FreelanceMarketplace</span>
           </span>
         </Link>
 
@@ -91,14 +91,14 @@ export default function AuthLayout({ children, mode }) {
           </div>
 
           <div className="promo-footer">
-            <span>SKILLBRIDGE</span>
+            <span>Youth Freelance Marketplace</span>
             <span>Connecting talent to opportunity.</span>
           </div>
         </aside>
       </main>
 
       <footer className="auth-mobile-footer">
-        © {new Date().getFullYear()} SkillBridge. Built for young talent.
+        © {new Date().getFullYear()} Youth Freelance Marketplace. Built for young talent.
       </footer>
     </div>
   );

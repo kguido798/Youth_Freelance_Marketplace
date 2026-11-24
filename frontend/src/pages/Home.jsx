@@ -17,7 +17,7 @@ export default function Home() {
             <Code2 size={22} />
           </span>
           <span>
-            Skill<span className="accent">Bridge</span>
+            Youth<span className="accent">FreelanceMarketplace</span>
           </span>
         </Link>
 
@@ -149,7 +149,7 @@ export default function Home() {
 
       <footer className="home-footer">
         <Link to="/" className="brand">
-          Skill<span className="accent">Bridge</span>
+          Youth<span className="accent">FreelanceMarketplace</span>
         </Link>
         <span>Connecting young talent to opportunity.</span>
       </footer>

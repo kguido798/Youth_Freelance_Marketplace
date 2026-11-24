@@ -53,7 +53,7 @@ export default function ClientDirectory() {
     <main className="discover-page">
       <nav className="discover-navbar">
         <Link to="/" className="discover-brand">
-          Skill<span>Bridge</span>
+          Youth<span>FreelanceMarketplace</span>
         </Link>
 
         <div className="discover-nav-links">
@@ -91,7 +91,7 @@ export default function ClientDirectory() {
         <div className="discover-heading">
           <div>
             <h2>Explore Organizations</h2>
-            <p>Discover clients with public profiles on SkillBridge.</p>
+            <p>Discover clients with public profiles on Youth Freelance Marketplace.</p>
           </div>
 
           <span className="discover-count">
